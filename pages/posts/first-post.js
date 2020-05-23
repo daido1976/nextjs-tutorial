@@ -1,9 +1,10 @@
 import Head from "next/head";
 import Link from "next/link";
+import Layout from "../components/layout";
 
 export default () => {
   return (
-    <>
+    <Layout>
       <Head>
         <title>First Post</title>
       </Head>
@@ -11,6 +12,6 @@ export default () => {
       <Link href="/">
         <a>Back to home</a>
       </Link>
-    </>
+    </Layout>
   );
 };
