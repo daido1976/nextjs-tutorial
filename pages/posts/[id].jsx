@@ -20,7 +20,7 @@ export const getStaticProps = async ({ params }) => {
 
 export default ({ postData }) => {
   return (
-    <Layout>
+    <Layout home={false}>
       {" "}
       {postData.title}
       <br />
