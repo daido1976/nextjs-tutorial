@@ -4,7 +4,11 @@ import matter from "gray-matter";
 
 const postsDirectory = path.join(process.cwd(), "posts");
 
-export function getSortedPostsData() {
+export const getSortedPostsData = (): {
+  date: string;
+  title: string;
+  id: string;
+}[] => {
   // /posts　配下のファイル名を取得する
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames.map((fileName) => {
@@ -21,7 +25,7 @@ export function getSortedPostsData() {
     // データを id と合わせる
     return {
       id,
-      ...matterResult.data,
+      ...(matterResult.data as { date: string; title: string }),
     };
   });
   // 投稿を日付でソートする
@@ -32,4 +36,4 @@ export function getSortedPostsData() {
       return -1;
     }
   });
-}
+};
