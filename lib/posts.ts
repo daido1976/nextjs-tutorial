@@ -37,3 +37,32 @@ export const getSortedPostsData = (): {
     }
   });
 };
+
+export const getAllPostIds = (): {
+  params: {
+    id: string;
+  };
+}[] => {
+  const fileNames = fs.readdirSync(postsDirectory);
+
+  // 以下のような配列を返す:
+  // [
+  //   {
+  //     params: {
+  //       id: 'ssg-ssr'
+  //     }
+  //   },
+  //   {
+  //     params: {
+  //       id: 'pre-rendering'
+  //     }
+  //   }
+  // ]
+  return fileNames.map((fileName) => {
+    return {
+      params: {
+        id: fileName.replace(/\.md$/, ""),
+      },
+    };
+  });
+};
