@@ -66,3 +66,23 @@ export const getAllPostIds = (): {
     };
   });
 };
+
+export const getPostData = (
+  id: string
+): {
+  date: string;
+  title: string;
+  id: string;
+} => {
+  const fullPath = path.join(postsDirectory, `${id}.md`);
+  const fileContents = fs.readFileSync(fullPath, "utf8");
+
+  // 投稿のメタデータ部分を解析するために gray-matter を使う
+  const matterResult = matter(fileContents);
+
+  // データを id と組み合わせる
+  return {
+    id,
+    ...(matterResult.data as { date: string; title: string }),
+  };
+};
