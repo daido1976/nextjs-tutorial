@@ -18,6 +18,15 @@ export const getStaticProps = async ({ params }) => {
   };
 };
 
-export default function Post() {
-  return <Layout>...</Layout>;
-}
+export default ({ postData }) => {
+  return (
+    <Layout>
+      {" "}
+      {postData.title}
+      <br />
+      {postData.id}
+      <br />
+      {postData.date}
+    </Layout>
+  );
+};
