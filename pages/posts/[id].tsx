@@ -1,7 +1,14 @@
 import Layout from "../../components/layout";
 import { getAllPostIds, getPostData } from "../../lib/posts";
 
-export const getStaticPaths = async () => {
+export const getStaticPaths = async (): Promise<{
+  paths: {
+    params: {
+      id: string;
+    };
+  }[];
+  fallback: boolean;
+}> => {
   const paths = getAllPostIds();
   return {
     paths,
@@ -9,7 +16,22 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async ({ params }) => {
+export const getStaticProps = async ({
+  params,
+}: {
+  params: {
+    id: string;
+  };
+}): Promise<{
+  props: {
+    postData: {
+      date: string;
+      title: string;
+      id: string;
+      contentHtml: string;
+    };
+  };
+}> => {
   const postData = await getPostData(params.id);
   return {
     props: {
@@ -18,7 +40,16 @@ export const getStaticProps = async ({ params }) => {
   };
 };
 
-export default ({ postData }) => {
+export default ({
+  postData,
+}: {
+  postData: {
+    date: string;
+    title: string;
+    id: string;
+    contentHtml: string;
+  };
+}): JSX.Element => {
   return (
     <Layout home={false}>
       {" "}
