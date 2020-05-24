@@ -4,8 +4,9 @@ import Layout, { siteTitle } from "../components/layout";
 import Date from "../components/date";
 import utilStyles from "../styles/utils.module.css";
 import { getSortedPostsData } from "../lib/posts";
+import { GetStaticProps } from "next";
 
-export const getStaticProps = async (): Promise<{
+export const getStaticProps: GetStaticProps = async (): Promise<{
   props: {
     allPostsData: {
       date: string;
