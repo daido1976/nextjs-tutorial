@@ -5,7 +5,15 @@ import Date from "../components/date";
 import utilStyles from "../styles/utils.module.css";
 import { getSortedPostsData } from "../lib/posts";
 
-export const getStaticProps = async () => {
+export const getStaticProps = async (): Promise<{
+  props: {
+    allPostsData: {
+      date: string;
+      title: string;
+      id: string;
+    }[];
+  };
+}> => {
   const allPostsData = getSortedPostsData();
   return {
     props: {
@@ -14,7 +22,15 @@ export const getStaticProps = async () => {
   };
 };
 
-export default ({ allPostsData }) => {
+export default ({
+  allPostsData,
+}: {
+  allPostsData: {
+    date: string;
+    title: string;
+    id: string;
+  }[];
+}) => {
   return (
     <Layout home={true}>
       <Head>
