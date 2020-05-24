@@ -27,6 +27,7 @@ export default ({ postData }) => {
       {postData.id}
       <br />
       {postData.date}
+      <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }}></div>
     </Layout>
   );
 };
