@@ -9,3 +9,5 @@
 $ npm run dev
 # and open http://localhost:3000
 ```
+
+- Deployed: https://vercel.com/daido1976/nextjs-tutorial
